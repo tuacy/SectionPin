@@ -1,1 +1,1 @@
-include ':app', ':sectionpin'
+include ':sectionpin', ':mobile'
