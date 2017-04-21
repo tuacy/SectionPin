@@ -4,13 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+import com.andview.refreshview.XRefreshView;
 import com.tuacy.sectionpin.SectionPinListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+	private XRefreshView       mRefreshCurrent;
 	private SectionPinListView mListPinSection;
+	private PinAdapter         mAdapter;
+	private List<String>       mData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void initView() {
+		mRefreshCurrent = (XRefreshView) findViewById(R.id.refresh_alarm_install_current);
 		mListPinSection = (SectionPinListView) findViewById(R.id.list_section_pin);
+		initRefreshView(mRefreshCurrent);
 	}
 
 	private void initEvent() {
@@ -30,42 +37,104 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void initData() {
-//		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, getData());
-//		mListPinSection.setAdapter(adapter);
+		mAdapter = new PinAdapter(this, null);
+		mListPinSection.setAdapter(mAdapter);
+	}
+
+	private void initRefreshView(XRefreshView ptrFrame) {
+		ptrFrame.setPullRefreshEnable(true);
+		ptrFrame.setPullLoadEnable(true);
+		ptrFrame.setAutoRefresh(false);
+		ptrFrame.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
+			@Override
+			public void onRefresh() {
+				mData.clear();
+				mData.add("2017-07-20");
+				mData.add("萍乡");
+				mData.add("高安");
+				mData.add("江西");
+				mData.add("南昌");
+				mAdapter.setData(mData);
+				mRefreshCurrent.stopLoadMore();
+				mRefreshCurrent.stopRefresh();
+			}
+
+			@Override
+			public void onLoadMore(boolean isSilence) {
+				mData.add("2017-07-20");
+				mData.add("萍乡");
+				mData.add("高安");
+				mData.add("江西");
+				mData.add("南昌");
+				mAdapter.setData(mData);
+				mRefreshCurrent.stopLoadMore();
+				mRefreshCurrent.stopRefresh();
+			}
+		});
 	}
 
 	private ArrayList<String> getData() {
 		ArrayList<String> list = new ArrayList<>();
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
-		list.add("180平米的房子");
-		list.add("一个勤劳漂亮的老婆");
-		list.add("一辆宝马");
-		list.add("一个强壮且永不生病的身体");
-		list.add("一个喜欢的事业");
+		list.add("2016-07-20");
+		list.add("萍乡");
+		list.add("高安");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-21");
+		list.add("江西");
+		list.add("南昌");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-22");
+		list.add("中国");
+		list.add("北京");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-23");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-24");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-25");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-26");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-27");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-28");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-29");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-30");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
+		list.add("2016-07-21");
+		list.add("辽宁");
+		list.add("沈阳");
+		list.add("江西");
+		list.add("南昌");
 		return list;
 	}
 }

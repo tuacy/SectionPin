@@ -10,6 +10,6 @@ public abstract class SectionPinAdapter extends BaseAdapter {
 	 * @param position adapter position
 	 * @return true or false
 	 */
-	abstract boolean isSection(int position);
+	public abstract boolean isSection(int position);
 
 }

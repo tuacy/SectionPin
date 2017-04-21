@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SectionPinListView">
+        <attr name="section_pin" format="boolean"/>
+    </declare-styleable>
+</resources>
