@@ -2,7 +2,6 @@ package com.tuacy.mobile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 
 import com.andview.refreshview.XRefreshView;
 import com.tuacy.sectionpin.SectionPinListView;
@@ -37,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void initData() {
-		mAdapter = new PinAdapter(this, null);
+		mData = getData();
+		mAdapter = new PinAdapter(this, mData);
 		mListPinSection.setAdapter(mAdapter);
 	}
 
